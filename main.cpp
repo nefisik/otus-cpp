@@ -1,12 +1,19 @@
-#include "lib.h"
+#include "ip_filter.h"
 
-#include <iostream>
-
-int main(int argc, char **argv)
+int main()
 {
-	std::cout << "build 0.0."
-              << version_patch() << std::endl
-			  << "Hello, World!" << std::endl;
+    try
+    {    
+        auto ip_pool = get_data();
+        print( sort(ip_pool) );
+        print( get_1(ip_pool) );
+        print( get_46_70(ip_pool) );
+        print( get_any_46(ip_pool) );
+    }
+    catch(const std::exception& ex)
+    {
+        std::cerr << ex.what() << std::endl;
+    }
 
-	return 0;
+    return 0;
 }

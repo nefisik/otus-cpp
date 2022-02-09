@@ -3,21 +3,19 @@ cmake_minimum_required(VERSION 3.5)
 set(PATCH_VERSION "1" CACHE INTERNAL "Patch version")
 set(PROJECT_VESRION 0.0.${PATCH_VERSION})
 
-project(helloworld VERSION ${PROJECT_VESRION})
+project(app VERSION ${PROJECT_VESRION})
 
 option(WITH_GOOGLE_TEST "Whether to build Google test" ON)
-
-configure_file(version.h.in version.h)
 
 add_executable(
     ${PROJECT_NAME}_cli
     ${CMAKE_SOURCE_DIR}/main.cpp
 )
 
-add_library(${PROJECT_NAME} lib.cpp)
+add_library(${PROJECT_NAME} ip_filter.cpp)
 
 set_target_properties(${PROJECT_NAME}_cli ${PROJECT_NAME} PROPERTIES
-    CXX_STANDARD 14
+    CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON
 )
 
@@ -37,7 +35,7 @@ if(WITH_GOOGLE_TEST)
     add_executable(test_version test_version.cpp)
 
     set_target_properties(test_version PROPERTIES
-        CXX_STANDARD 14
+        CXX_STANDARD 17
         CXX_STANDARD_REQUIRED ON
     )
 
